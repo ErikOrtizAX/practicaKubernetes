@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: mx.com.axity.services.facade.inventoryFacadeTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.152 sec

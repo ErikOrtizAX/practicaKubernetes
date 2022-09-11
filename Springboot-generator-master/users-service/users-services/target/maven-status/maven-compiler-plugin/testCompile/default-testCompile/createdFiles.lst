@@ -1,0 +1,4 @@
+mx\com\axity\services\Application.class
+mx\com\axity\services\facade\usersFacadeTest.class
+mx\com\axity\services\BaseTest.class
+mx\com\axity\services\service\usersServiceTest.class

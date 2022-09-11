@@ -1,0 +1,6 @@
+mx\com\axity\services\service\IinventoryService.class
+mx\com\axity\services\stream\KafkaListeners.class
+mx\com\axity\services\facade\impl\inventoryFacade.class
+mx\com\axity\services\facade\IinventoryFacade.class
+mx\com\axity\services\service\impl\inventoryServiceImpl.class
+mx\com\axity\services\service\impl\inventoryServiceImpl$1.class

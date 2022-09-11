@@ -1,0 +1,5 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+inventory-services,mx.com.axity.services.service.impl,inventoryServiceImpl.new TypeToken() {...},0,6,0,0,0,1,0,1,0,1
+inventory-services,mx.com.axity.services.service.impl,inventoryServiceImpl,0,36,0,0,0,8,0,3,0,3
+inventory-services,mx.com.axity.services.facade.impl,inventoryFacade,0,7,0,0,0,2,0,2,0,2
+inventory-services,mx.com.axity.services.stream,KafkaListeners,11,7,0,0,2,2,1,2,1,2

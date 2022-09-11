@@ -1,0 +1,6 @@
+mx\com\axity\services\facade\impl\usersFacade.class
+mx\com\axity\services\stream\KafkaListeners.class
+mx\com\axity\services\facade\IusersFacade.class
+mx\com\axity\services\service\impl\usersServiceImpl.class
+mx\com\axity\services\service\impl\usersServiceImpl$1.class
+mx\com\axity\services\service\IusersService.class

@@ -1,0 +1,4 @@
+mx\com\axity\services\service\inventoryServiceTest.class
+mx\com\axity\services\Application.class
+mx\com\axity\services\facade\inventoryFacadeTest.class
+mx\com\axity\services\BaseTest.class
