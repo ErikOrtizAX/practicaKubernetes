@@ -1,0 +1,301 @@
+---
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nodejspractice
+  name: nodejspractice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nodejspractice
+  template:
+    metadata:
+      labels:
+        app: nodejspractice 
+    spec:
+      containers:
+      - name: nodejspractice
+        image: erikortizax/nodejspractice:0.0.1
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: 200m
+            memory: 256Mi
+          requests:
+            cpu: 100m
+            memory: 128Mi
+        env:
+        - name: TZ
+          value: America/Mexico_City
+        - name: NODE_ENV
+          value: development
+        ports:
+        - containerPort: 3001
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: nodejspractice
+  name: nodejspractice
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 3002 #puerto interno
+    protocol: TCP
+    targetPort: 3001 #puesto externo
+  selector:
+    app: nodejspractice
+---
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: nodejspractice
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: nodejspractice
+  minReplicas: 1
+  maxReplicas: 1
+  metrics: 
+  - type: Resource 
+    resource: 
+      name: cpu 
+      target:
+        type: Utilization
+        averageUtilization: 70
+  - type: Resource 
+    resource: 
+      name: memory
+      target:
+        type: Utilization
+        averageValue: 200Mi
+---
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: javasr
+  name: javasr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: javasr
+  template:
+    metadata:
+      labels:
+        app: javasr
+    spec:
+      containers:
+      - name: javasr
+        image: erikortizax/serviceregistry:latest
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: 200m
+            memory: 256Mi
+          requests:
+            cpu: 100m
+            memory: 128Mi
+        env:
+        - name: TZ
+          value: America/Mexico_City
+        - name: JAVASR_ENVIRONMENT
+          value: Development
+        ports:
+        - containerPort: 8010
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: javasr
+  name: javasr
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 8011
+    protocol: TCP
+    targetPort: 8010
+  selector:
+    app: javasr
+---
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: javasr
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: javasr
+  minReplicas: 1
+  maxReplicas: 1
+  metrics: 
+  - type: Resource 
+    resource: 
+      name: cpu 
+      target:
+        type: Utilization
+        averageUtilization: 70
+  - type: Resource 
+    resource: 
+      name: memory
+      target:
+        type: Utilization
+        averageValue: 200Mi
+---
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: javaag
+  name: javaag
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: javaag
+  template:
+    metadata:
+      labels:
+        app: javaag
+    spec:
+      containers:
+      - name: javaag
+        image: erikortizax/apigateway:latest
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: 200m
+            memory: 256Mi
+          requests:
+            cpu: 100m
+            memory: 128Mi
+        env:
+        - name: TZ
+          value: America/Mexico_City
+        - name: JAVAAG_ENVIRONMENT
+          value: Development
+        ports:
+        - containerPort: 8082
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: javaag
+  name: javaag
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 8083
+    protocol: TCP
+    targetPort: 8082
+  selector:
+    app: javaag
+---
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: javaag
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: javaag
+  minReplicas: 1
+  maxReplicas: 1
+  metrics: 
+  - type: Resource 
+    resource: 
+      name: cpu 
+      target:
+        type: Utilization
+        averageUtilization: 70
+  - type: Resource 
+    resource: 
+      name: memory
+      target:
+        type: Utilization
+        averageValue: 200Mi
+---
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: javaus
+  name: javaus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: javaus
+  template:
+    metadata:
+      labels:
+        app: javaus
+    spec:
+      containers:
+      - name: javaus
+        image: erikortizax/userws:latest
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: 200m
+            memory: 256Mi
+          requests:
+            cpu: 100m
+            memory: 128Mi
+        env:
+        - name: TZ
+          value: America/Mexico_City
+        - name: JAVAUS_ENVIRONMENT
+          value: Development
+        ports:
+        - containerPort: 8097
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: javaus
+  name: javaus
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 8098
+    protocol: TCP
+    targetPort: 8097
+  selector:
+    app: javaus
+---
+apiVersion: autoscaling/v2beta2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: javaus
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: javaus
+  minReplicas: 1
+  maxReplicas: 1
+  metrics: 
+  - type: Resource 
+    resource: 
+      name: cpu 
+      target:
+        type: Utilization
+        averageUtilization: 70
+  - type: Resource 
+    resource: 
+      name: memory
+      target:
+        type: Utilization
+        averageValue: 200Mi
+---
